@@ -6,3 +6,4 @@
 
 Core.lua
 DeathMessage.lua
+SlashCommand.lua
