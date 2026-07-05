@@ -1,0 +1,8 @@
+## Interface: 120000
+## Title: Durability Damage Taken
+## Notes: Reports durability lost from dying and how much durability remains.
+## Author: Diogo
+## Version: 1.0.0
+
+Core.lua
+DeathMessage.lua
