@@ -1,6 +1,6 @@
 # Durability Damage Taken
 
-A small World of Warcraft: Midnight addon that prints a chat message after durability damage from dying.
+A small World of Warcraft: Midnight addon that tracks durability loss and warns when durability is low.
 
 The message includes:
 
@@ -11,3 +11,5 @@ The message includes:
 - yellow remaining durability between 50% and 80%
 
 You can also run `/ddt` in chat to print your current durability on demand with the same color coding.
+
+Entering an instance below 80% durability displays a warning and plays the raid-warning sound.

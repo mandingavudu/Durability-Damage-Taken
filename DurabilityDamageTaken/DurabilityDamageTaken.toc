@@ -1,9 +1,10 @@
 ## Interface: 120000
 ## Title: Durability Damage Taken
-## Notes: Reports durability lost from dying and how much durability remains.
+## Notes: Reports durability loss and warns when entering instances with low durability.
 ## Author: Diogo
-## Version: 1.0.0
+## Version: 1.1.0
 
 Core.lua
 DeathMessage.lua
+InstanceWarning.lua
 SlashCommand.lua
