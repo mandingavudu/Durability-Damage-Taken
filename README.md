@@ -1,19 +1,17 @@
 # Durability Damage Taken
 
-A small World of Warcraft: Midnight addon that tracks durability loss and warns when durability is low.
+A World of Warcraft: Midnight addon that reports non-combat durability loss and warns when equipment needs repair.
 
-The message includes:
+## Behavior
 
-- durability percentage lost
-- durability percentage remaining
-- green remaining durability at 80% or higher
-- red remaining durability at 50% or lower
-- yellow remaining durability between 50% and 80%
+- Prints durability lost and remaining after every non-combat reduction, including deaths and Spirit Healer resurrections.
+- Shows large red text and plays the raid-warning sound when entering an instance or delve below 80% durability.
+- Repeats that warning after a death or other non-combat reduction inside an instance or delve below 50% durability.
 
-You can also run `/ddt` in chat to print your current durability on demand with the same color coding.
+## Durability colors
 
-Entering an instance or delve below 80% durability displays a warning and plays the raid-warning sound.
-The warning uses large red text near the top of the screen and remains visible for five seconds.
-After a death in an instance or delve, the warning also appears below 50% durability.
+- Green: 80% or higher
+- Yellow: above 50% and below 80%
+- Red: 50% or lower
 
-Every non-combat durability reduction prints the percentage lost and remaining durability in chat. Death and Spirit Healer resurrection updates are retried until the durability loss becomes available.
+Use `/ddt` to print current durability.
