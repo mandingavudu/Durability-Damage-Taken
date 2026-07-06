@@ -34,7 +34,11 @@ local function GetTrackedLocation()
     return "delve:" .. tostring(mapID)
 end
 
-local function WarnIfDurabilityIsLow()
+function DDT.IsInTrackedInstance()
+    return GetTrackedLocation() ~= nil
+end
+
+function DDT.WarnIfDurabilityIsLow()
     local percentLeft = DDT.GetEquippedDurabilityPercent()
 
     if not percentLeft then
@@ -67,7 +71,7 @@ local function CheckLocation()
         return
     end
 
-    if WarnIfDurabilityIsLow() then
+    if DDT.WarnIfDurabilityIsLow() then
         lastTrackedLocation = location
     end
 end

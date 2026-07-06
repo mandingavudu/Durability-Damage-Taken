@@ -5,7 +5,9 @@ local durabilityBeforeDeath
 local deathCheckStartedAt
 local lastKnownDurability
 local lastReportTime = 0
+local lowDurabilityWarningHandled = false
 local DEATH_CHECK_TIMEOUT_SECONDS = 15
+local RED_DURABILITY_THRESHOLD = 50
 
 local function PrintDurabilityLoss(percentLost, percentLeft)
     local message = string.format(
@@ -26,6 +28,13 @@ local function TryReportDeathDurabilityLoss()
 
     if not durabilityAfterDeath then
         return
+    end
+
+    if not lowDurabilityWarningHandled
+        and durabilityAfterDeath <= RED_DURABILITY_THRESHOLD
+        and DDT.IsInTrackedInstance()
+    then
+        lowDurabilityWarningHandled = DDT.WarnIfDurabilityIsLow()
     end
 
     local now = GetTime()
@@ -70,6 +79,7 @@ frame:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_DEAD" then
         durabilityBeforeDeath = lastKnownDurability or DDT.GetEquippedDurabilityPercent()
         pendingDeathLoss = durabilityBeforeDeath ~= nil
+        lowDurabilityWarningHandled = false
         deathCheckStartedAt = GetTime()
         C_Timer.After(1, TryReportDeathDurabilityLoss)
         return
