@@ -1,0 +1,6 @@
+package-as: DurabilityDamageTaken
+
+ignore:
+  - .git
+  - .github
+  - README.md

@@ -1,9 +1,10 @@
 ## Interface: 120000
 ## Title: Durability Damage Taken
-## Notes: Reports durability loss and warns when entering instances with low durability.
+## Notes: A World of Warcraft: Midnight addon that reports non-combat durability loss and warns when equipment needs repair.
 ## Author: Diogo
-## Version: 1.1.0
+## Version: @project-version
 ## X-License: MIT
+## X-Curse-Project-ID: 1600407
 ## SavedVariables: DurabilityDamageTakenDB
 
 Core.lua
