@@ -11,12 +11,24 @@ if settings.majorWarningEnabled == nil then
     settings.majorWarningEnabled = true
 end
 
+if settings.followupMajorWarningEnabled == nil then
+    settings.followupMajorWarningEnabled = true
+end
+
 function DDT.IsMajorWarningEnabled()
     return settings.majorWarningEnabled
 end
 
 function DDT.SetMajorWarningEnabled(enabled)
     settings.majorWarningEnabled = enabled
+end
+
+function DDT.IsFollowupMajorWarningEnabled()
+    return settings.followupMajorWarningEnabled
+end
+
+function DDT.SetFollowupMajorWarningEnabled(enabled)
+    settings.followupMajorWarningEnabled = enabled
 end
 
 function DDT.GetEquippedDurabilityPercent()

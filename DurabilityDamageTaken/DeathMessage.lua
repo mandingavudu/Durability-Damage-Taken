@@ -17,7 +17,10 @@ local function PrintDurabilityLoss(percentLost, percentLeft)
 end
 
 local function ShowCriticalWarningIfNeeded(percentLeft)
-    if percentLeft < DDT.RED_DURABILITY_THRESHOLD and DDT.IsInTrackedInstance() then
+    if DDT.IsFollowupMajorWarningEnabled()
+        and percentLeft < DDT.RED_DURABILITY_THRESHOLD
+        and DDT.IsInTrackedInstance()
+    then
         DDT.WarnIfDurabilityIsLow()
     end
 end
