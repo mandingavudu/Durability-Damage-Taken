@@ -4,6 +4,21 @@ DDT.MessagePrefix = "|cff9d9d9d[" .. addonName .. "]|r "
 DDT.GREEN_DURABILITY_THRESHOLD = 80
 DDT.RED_DURABILITY_THRESHOLD = 50
 
+local settings = _G.DurabilityDamageTakenDB or {}
+_G.DurabilityDamageTakenDB = settings
+
+if settings.majorWarningEnabled == nil then
+    settings.majorWarningEnabled = true
+end
+
+function DDT.IsMajorWarningEnabled()
+    return settings.majorWarningEnabled
+end
+
+function DDT.SetMajorWarningEnabled(enabled)
+    settings.majorWarningEnabled = enabled
+end
+
 function DDT.GetEquippedDurabilityPercent()
     local currentTotal = 0
     local maximumTotal = 0

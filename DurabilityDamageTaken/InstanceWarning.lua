@@ -38,6 +38,10 @@ function DDT.IsInTrackedInstance()
 end
 
 function DDT.WarnIfDurabilityIsLow()
+    if not DDT.IsMajorWarningEnabled() then
+        return true
+    end
+
     local percentLeft = DDT.GetEquippedDurabilityPercent()
 
     if not percentLeft then

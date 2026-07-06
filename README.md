@@ -14,4 +14,8 @@ A World of Warcraft: Midnight addon that reports non-combat durability loss and 
 - Yellow: above 50% and below 80%
 - Red: 50% or lower
 
-Use `/ddt` to print current durability.
+## Commands
+
+- `/ddt`: print current durability
+- `/ddt warning on`: enable major text and sound warnings (default)
+- `/ddt warning off`: disable major text and sound warnings
