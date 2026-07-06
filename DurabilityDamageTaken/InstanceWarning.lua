@@ -29,8 +29,7 @@ local function GetTrackedLocation()
         return "instance:" .. tostring(instanceID)
     end
 
-    local mapID = C_Map.GetBestMapForUnit("player") or 0
-    return "delve:" .. tostring(mapID)
+    return "delve"
 end
 
 function DDT.IsInTrackedInstance()
@@ -62,7 +61,7 @@ function DDT.WarnIfDurabilityIsLow()
     return true
 end
 
-local function CheckLocation()
+local function CheckLocation(allowDelveEntry)
     local location = GetTrackedLocation()
 
     if not location then
@@ -71,6 +70,10 @@ local function CheckLocation()
     end
 
     if location == lastTrackedLocation then
+        return
+    end
+
+    if location == "delve" and not allowDelveEntry then
         return
     end
 
@@ -84,8 +87,19 @@ frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("PLAYER_MAP_CHANGED")
 frame:RegisterEvent("WALK_IN_DATA_UPDATE")
 
-frame:SetScript("OnEvent", function()
-    CheckLocation()
-    C_Timer.After(2, CheckLocation)
-    C_Timer.After(5, CheckLocation)
+frame:SetScript("OnEvent", function(_, event)
+    if event == "WALK_IN_DATA_UPDATE" then
+        C_Timer.After(1, function()
+            CheckLocation(true)
+        end)
+        return
+    end
+
+    CheckLocation(false)
+    C_Timer.After(2, function()
+        CheckLocation(false)
+    end)
+    C_Timer.After(5, function()
+        CheckLocation(false)
+    end)
 end)
