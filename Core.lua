@@ -15,6 +15,10 @@ if settings.followupMajorWarningEnabled == nil then
     settings.followupMajorWarningEnabled = true
 end
 
+if settings.portalMajorWarningEnabled == nil then
+    settings.portalMajorWarningEnabled = true
+end
+
 function DDT.IsMajorWarningEnabled()
     return settings.majorWarningEnabled
 end
@@ -29,6 +33,14 @@ end
 
 function DDT.SetFollowupMajorWarningEnabled(enabled)
     settings.followupMajorWarningEnabled = enabled
+end
+
+function DDT.IsPortalMajorWarningEnabled()
+    return settings.portalMajorWarningEnabled
+end
+
+function DDT.SetPortalMajorWarningEnabled(enabled)
+    settings.portalMajorWarningEnabled = enabled
 end
 
 function DDT.GetEquippedDurabilityPercent()

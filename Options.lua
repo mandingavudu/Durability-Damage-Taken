@@ -18,6 +18,25 @@ local majorWarningInitializer = Settings.CreateCheckbox(
     "Show large text and play a sound when entering an instance or delve below 80% durability."
 )
 
+local portalWarningSetting = Settings.RegisterAddOnSetting(
+    category,
+    addonName .. "_PORTAL_MAJOR_WARNING",
+    "portalMajorWarningEnabled",
+    settings,
+    Settings.VarType.Boolean,
+    "Warn when using a seasonal dungeon portal",
+    Settings.Default.True
+)
+local portalWarningInitializer = Settings.CreateCheckbox(
+    category,
+    portalWarningSetting,
+    "Also warn when using a current-season dungeon portal below 80% durability."
+)
+portalWarningInitializer:Indent()
+portalWarningInitializer:SetParentInitializer(majorWarningInitializer, function()
+    return settings.majorWarningEnabled
+end)
+
 local followupWarningSetting = Settings.RegisterAddOnSetting(
     category,
     addonName .. "_FOLLOWUP_MAJOR_WARNING",

@@ -3,6 +3,17 @@ local _, DDT = ...
 local lastTrackedLocation
 local warningSequence = 0
 
+local SEASONAL_DUNGEON_PORTAL_SPELLS = {
+    [159898] = true,  -- Skyreach
+    [393273] = true,  -- Algeth'ar Academy
+    [1254400] = true, -- Windrunner Spire
+    [1254551] = true, -- Seat of the Triumvirate
+    [1254555] = true, -- Pit of Saron
+    [1254559] = true, -- Maisara Caverns
+    [1254563] = true, -- Nexus-Point Xenas
+    [1254572] = true, -- Magisters' Terrace
+}
+
 local warningFrame = CreateFrame("Frame", nil, UIParent)
 warningFrame:SetAllPoints(UIParent)
 warningFrame:Hide()
@@ -99,8 +110,21 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("PLAYER_MAP_CHANGED")
 frame:RegisterEvent("WALK_IN_DATA_UPDATE")
+frame:RegisterEvent("UNIT_SPELLCAST_START")
 
-frame:SetScript("OnEvent", function(_, event)
+frame:SetScript("OnEvent", function(_, event, ...)
+    if event == "UNIT_SPELLCAST_START" then
+        local unit, _, spellID = ...
+
+        if unit == "player"
+            and SEASONAL_DUNGEON_PORTAL_SPELLS[spellID]
+            and DDT.IsPortalMajorWarningEnabled()
+        then
+            DDT.WarnIfDurabilityIsLow()
+        end
+        return
+    end
+
     if event == "WALK_IN_DATA_UPDATE" then
         C_Timer.After(1, function()
             CheckLocation(true)
