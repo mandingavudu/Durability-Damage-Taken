@@ -3,6 +3,18 @@ local _, DDT = ...
 local GREEN_DURABILITY_THRESHOLD = 80
 local lastTrackedLocation
 
+local warningFrame = CreateFrame("Frame", nil, UIParent)
+warningFrame:SetAllPoints(UIParent)
+warningFrame:Hide()
+
+local warningText = warningFrame:CreateFontString(nil, "OVERLAY")
+local fontPath, fontSize, fontFlags = GameFontNormalHuge:GetFont()
+warningText:SetFont(fontPath, fontSize * 3, fontFlags)
+warningText:SetPoint("TOP", UIParent, "TOP", 0, -360)
+warningText:SetTextColor(1, 0.1, 0.1)
+warningText:SetShadowColor(0, 0, 0, 1)
+warningText:SetShadowOffset(3, -3)
+
 local function GetTrackedLocation()
     local inInstance = IsInInstance()
     local inDelve = C_PartyInfo
@@ -34,8 +46,12 @@ local function WarnIfDurabilityIsLow()
     end
 
     local message = string.format("LOW DURABILITY: %.1f%%", percentLeft)
-    RaidNotice_AddMessage(RaidWarningFrame, message, ChatTypeInfo.RAID_WARNING)
+    warningText:SetText(message)
+    warningFrame:Show()
     PlaySound(SOUNDKIT.RAID_WARNING, "Master")
+    C_Timer.After(5, function()
+        warningFrame:Hide()
+    end)
     return true
 end
 

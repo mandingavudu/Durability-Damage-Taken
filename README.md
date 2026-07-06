@@ -13,3 +13,4 @@ The message includes:
 You can also run `/ddt` in chat to print your current durability on demand with the same color coding.
 
 Entering an instance or delve below 80% durability displays a warning and plays the raid-warning sound.
+The warning uses large red text near the top of the screen and remains visible for five seconds.
