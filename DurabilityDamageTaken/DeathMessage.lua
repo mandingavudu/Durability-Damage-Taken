@@ -30,7 +30,7 @@ local function TryReportDeathDurabilityLoss()
     end
 
     if not lowDurabilityWarningHandled
-        and durabilityAfterDeath <= DDT.RED_DURABILITY_THRESHOLD
+        and durabilityAfterDeath < DDT.RED_DURABILITY_THRESHOLD
         and DDT.IsInTrackedInstance()
     then
         lowDurabilityWarningHandled = DDT.WarnIfDurabilityIsLow()
