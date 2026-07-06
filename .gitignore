@@ -1,0 +1,17 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Lua tooling
+.luacheckcache
+
+# Packaged releases
+*.zip
+release/
+dist/

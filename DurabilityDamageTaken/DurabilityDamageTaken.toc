@@ -3,6 +3,7 @@
 ## Notes: Reports durability loss and warns when entering instances with low durability.
 ## Author: Diogo
 ## Version: 1.1.0
+## X-License: MIT
 
 Core.lua
 DeathMessage.lua
