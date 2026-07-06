@@ -1,12 +1,19 @@
 local _, DDT = ...
 
 local GREEN_DURABILITY_THRESHOLD = 80
-local wasInInstance = false
+local wasInTrackedInstance = false
+
+local function IsInTrackedInstance()
+    local inInstance = IsInInstance()
+    local inDelve = C_PartyInfo
+        and C_PartyInfo.IsPartyWalkIn
+        and C_PartyInfo.IsPartyWalkIn()
+
+    return inInstance or inDelve
+end
 
 local function WarnIfDurabilityIsLow()
-    local inInstance = IsInInstance()
-
-    if not inInstance then
+    if not IsInTrackedInstance() then
         return
     end
 
@@ -23,13 +30,15 @@ end
 
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:RegisterEvent("PLAYER_MAP_CHANGED")
+frame:RegisterEvent("WALK_IN_DATA_UPDATE")
 
 frame:SetScript("OnEvent", function()
-    local inInstance = IsInInstance()
+    local inTrackedInstance = IsInTrackedInstance()
 
-    if inInstance and not wasInInstance then
+    if inTrackedInstance and not wasInTrackedInstance then
         C_Timer.After(2, WarnIfDurabilityIsLow)
     end
 
-    wasInInstance = inInstance
+    wasInTrackedInstance = inTrackedInstance
 end)
