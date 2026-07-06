@@ -15,3 +15,5 @@ You can also run `/ddt` in chat to print your current durability on demand with 
 Entering an instance or delve below 80% durability displays a warning and plays the raid-warning sound.
 The warning uses large red text near the top of the screen and remains visible for five seconds.
 After a death in an instance or delve, the warning also appears below 50% durability.
+
+Every non-combat durability reduction prints the percentage lost and remaining durability in chat. Death and Spirit Healer resurrection updates are retried until the durability loss becomes available.

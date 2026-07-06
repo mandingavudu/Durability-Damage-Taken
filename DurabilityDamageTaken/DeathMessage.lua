@@ -4,18 +4,22 @@ local pendingDeathLoss = false
 local durabilityBeforeDeath
 local deathCheckStartedAt
 local lastKnownDurability
-local lastReportTime = 0
-local lowDurabilityWarningHandled = false
 local DEATH_CHECK_TIMEOUT_SECONDS = 15
 
 local function PrintDurabilityLoss(percentLost, percentLeft)
     local message = string.format(
-        "You lost |cffffffff%.1f%%|r durability from dying. Durability left: %s.",
+        "You lost |cffffffff%.1f%%|r durability. Durability left: %s.",
         percentLost,
         DDT.FormatColoredDurability(percentLeft)
     )
 
     DDT.Print(message)
+end
+
+local function ShowCriticalWarningIfNeeded(percentLeft)
+    if percentLeft < DDT.RED_DURABILITY_THRESHOLD and DDT.IsInTrackedInstance() then
+        DDT.WarnIfDurabilityIsLow()
+    end
 end
 
 local function TryReportDeathDurabilityLoss()
@@ -27,13 +31,6 @@ local function TryReportDeathDurabilityLoss()
 
     if not durabilityAfterDeath then
         return
-    end
-
-    if not lowDurabilityWarningHandled
-        and durabilityAfterDeath < DDT.RED_DURABILITY_THRESHOLD
-        and DDT.IsInTrackedInstance()
-    then
-        lowDurabilityWarningHandled = DDT.WarnIfDurabilityIsLow()
     end
 
     local now = GetTime()
@@ -50,15 +47,17 @@ local function TryReportDeathDurabilityLoss()
         return
     end
 
-    if now - lastReportTime < 2 then
-        return
-    end
-
     pendingDeathLoss = false
     lastKnownDurability = durabilityAfterDeath
-    lastReportTime = now
 
     PrintDurabilityLoss(percentLost, durabilityAfterDeath)
+    ShowCriticalWarningIfNeeded(durabilityAfterDeath)
+end
+
+local function ScheduleDeathCheck(delay)
+    C_Timer.After(delay, function()
+        TryReportDeathDurabilityLoss()
+    end)
 end
 
 local frame = CreateFrame("Frame")
@@ -78,23 +77,39 @@ frame:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_DEAD" then
         durabilityBeforeDeath = lastKnownDurability or DDT.GetEquippedDurabilityPercent()
         pendingDeathLoss = durabilityBeforeDeath ~= nil
-        lowDurabilityWarningHandled = false
         deathCheckStartedAt = GetTime()
-        C_Timer.After(1, TryReportDeathDurabilityLoss)
+        ScheduleDeathCheck(1)
+        ScheduleDeathCheck(3)
+        ScheduleDeathCheck(6)
+        ScheduleDeathCheck(16)
         return
     end
 
     if event == "UPDATE_INVENTORY_DURABILITY" then
         if pendingDeathLoss then
-            C_Timer.After(0.5, TryReportDeathDurabilityLoss)
+            ScheduleDeathCheck(0.5)
         else
-            lastKnownDurability = DDT.GetEquippedDurabilityPercent()
+            local previousDurability = lastKnownDurability
+            local currentDurability = DDT.GetEquippedDurabilityPercent()
+
+            lastKnownDurability = currentDurability
+
+            if previousDurability
+                and currentDurability
+                and currentDurability < previousDurability
+                and not UnitAffectingCombat("player")
+            then
+                PrintDurabilityLoss(previousDurability - currentDurability, currentDurability)
+                ShowCriticalWarningIfNeeded(currentDurability)
+            end
         end
 
         return
     end
 
     if event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
-        C_Timer.After(0.5, TryReportDeathDurabilityLoss)
+        ScheduleDeathCheck(0.5)
+        ScheduleDeathCheck(2)
+        ScheduleDeathCheck(5)
     end
 end)
