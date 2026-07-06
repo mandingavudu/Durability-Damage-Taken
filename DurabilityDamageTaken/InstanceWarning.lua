@@ -1,6 +1,7 @@
 local _, DDT = ...
 
 local lastTrackedLocation
+local warningSequence = 0
 
 local warningFrame = CreateFrame("Frame", nil, UIParent)
 warningFrame:SetAllPoints(UIParent)
@@ -52,11 +53,23 @@ function DDT.WarnIfDurabilityIsLow()
     end
 
     local message = string.format("LOW DURABILITY: %.1f%%", percentLeft)
-    warningText:SetText(message)
-    warningFrame:Show()
-    PlaySound(SOUNDKIT.RAID_WARNING, "Master")
-    C_Timer.After(5, function()
-        warningFrame:Hide()
+    warningSequence = warningSequence + 1
+    local sequence = warningSequence
+
+    C_Timer.After(1, function()
+        if sequence ~= warningSequence then
+            return
+        end
+
+        warningText:SetText(message)
+        warningFrame:Show()
+        PlaySound(SOUNDKIT.RAID_WARNING, "Master")
+
+        C_Timer.After(5, function()
+            if sequence == warningSequence then
+                warningFrame:Hide()
+            end
+        end)
     end)
     return true
 end
