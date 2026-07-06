@@ -1,31 +1,59 @@
 local _, DDT = ...
 
 local GREEN_DURABILITY_THRESHOLD = 80
-local wasInTrackedInstance = false
+local lastTrackedLocation
 
-local function IsInTrackedInstance()
+local function GetTrackedLocation()
     local inInstance = IsInInstance()
     local inDelve = C_PartyInfo
         and C_PartyInfo.IsPartyWalkIn
         and C_PartyInfo.IsPartyWalkIn()
 
-    return inInstance or inDelve
+    if not inInstance and not inDelve then
+        return nil
+    end
+
+    if inInstance then
+        local instanceID = select(8, GetInstanceInfo()) or 0
+        return "instance:" .. tostring(instanceID)
+    end
+
+    local mapID = C_Map.GetBestMapForUnit("player") or 0
+    return "delve:" .. tostring(mapID)
 end
 
 local function WarnIfDurabilityIsLow()
-    if not IsInTrackedInstance() then
-        return
-    end
-
     local percentLeft = DDT.GetEquippedDurabilityPercent()
 
-    if not percentLeft or percentLeft >= GREEN_DURABILITY_THRESHOLD then
-        return
+    if not percentLeft then
+        return false
+    end
+
+    if percentLeft >= GREEN_DURABILITY_THRESHOLD then
+        return true
     end
 
     local message = string.format("LOW DURABILITY: %.1f%%", percentLeft)
     RaidNotice_AddMessage(RaidWarningFrame, message, ChatTypeInfo.RAID_WARNING)
     PlaySound(SOUNDKIT.RAID_WARNING, "Master")
+    return true
+end
+
+local function CheckLocation()
+    local location = GetTrackedLocation()
+
+    if not location then
+        lastTrackedLocation = nil
+        return
+    end
+
+    if location == lastTrackedLocation then
+        return
+    end
+
+    if WarnIfDurabilityIsLow() then
+        lastTrackedLocation = location
+    end
 end
 
 local frame = CreateFrame("Frame")
@@ -34,11 +62,7 @@ frame:RegisterEvent("PLAYER_MAP_CHANGED")
 frame:RegisterEvent("WALK_IN_DATA_UPDATE")
 
 frame:SetScript("OnEvent", function()
-    local inTrackedInstance = IsInTrackedInstance()
-
-    if inTrackedInstance and not wasInTrackedInstance then
-        C_Timer.After(2, WarnIfDurabilityIsLow)
-    end
-
-    wasInTrackedInstance = inTrackedInstance
+    CheckLocation()
+    C_Timer.After(2, CheckLocation)
+    C_Timer.After(5, CheckLocation)
 end)
