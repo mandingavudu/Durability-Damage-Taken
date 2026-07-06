@@ -7,7 +7,6 @@ local lastKnownDurability
 local lastReportTime = 0
 local lowDurabilityWarningHandled = false
 local DEATH_CHECK_TIMEOUT_SECONDS = 15
-local RED_DURABILITY_THRESHOLD = 50
 
 local function PrintDurabilityLoss(percentLost, percentLeft)
     local message = string.format(
@@ -31,7 +30,7 @@ local function TryReportDeathDurabilityLoss()
     end
 
     if not lowDurabilityWarningHandled
-        and durabilityAfterDeath <= RED_DURABILITY_THRESHOLD
+        and durabilityAfterDeath <= DDT.RED_DURABILITY_THRESHOLD
         and DDT.IsInTrackedInstance()
     then
         lowDurabilityWarningHandled = DDT.WarnIfDurabilityIsLow()

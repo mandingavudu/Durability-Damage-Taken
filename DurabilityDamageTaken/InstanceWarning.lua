@@ -1,6 +1,5 @@
 local _, DDT = ...
 
-local GREEN_DURABILITY_THRESHOLD = 80
 local lastTrackedLocation
 
 local warningFrame = CreateFrame("Frame", nil, UIParent)
@@ -45,7 +44,7 @@ function DDT.WarnIfDurabilityIsLow()
         return false
     end
 
-    if percentLeft >= GREEN_DURABILITY_THRESHOLD then
+    if percentLeft >= DDT.GREEN_DURABILITY_THRESHOLD then
         return true
     end
 

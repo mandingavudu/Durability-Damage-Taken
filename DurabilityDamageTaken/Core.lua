@@ -1,6 +1,8 @@
 local addonName, DDT = ...
 
 DDT.MessagePrefix = "|cff9d9d9d[" .. addonName .. "]|r "
+DDT.GREEN_DURABILITY_THRESHOLD = 80
+DDT.RED_DURABILITY_THRESHOLD = 50
 
 function DDT.GetEquippedDurabilityPercent()
     local currentTotal = 0
@@ -23,11 +25,11 @@ function DDT.GetEquippedDurabilityPercent()
 end
 
 function DDT.GetDurabilityColor(percentLeft)
-    if percentLeft >= 80 then
+    if percentLeft >= DDT.GREEN_DURABILITY_THRESHOLD then
         return "ff00ff00"
     end
 
-    if percentLeft <= 50 then
+    if percentLeft <= DDT.RED_DURABILITY_THRESHOLD then
         return "ffff0000"
     end
 
