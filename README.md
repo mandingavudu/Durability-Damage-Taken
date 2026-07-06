@@ -21,3 +21,5 @@ A World of Warcraft: Midnight addon that reports non-combat durability loss and 
 - `/ddt warning off`: disable major text and sound warnings
 - `/ddt warning followup on`: enable warnings after durability loss (default)
 - `/ddt warning followup off`: keep only instance/delve entry warnings
+
+The same warning controls are available under Options → AddOns → Durability Damage Taken.
