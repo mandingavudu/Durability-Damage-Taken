@@ -1,3 +1,7 @@
+# 1.2.1
+
+- Updated the 1.0.0 changelog to document its included features.
+
 # 1.2.0
 
 - Added the current durability chat message whenever a major warning triggers.
@@ -9,4 +13,9 @@
 
 # 1.0.0
 
-- Initial release.
+- Added chat reporting for non-combat durability loss and current durability via `/ddt`.
+- Added configurable major warnings when entering instances or delves below 80% durability.
+- Added configurable follow-up warnings after durability loss below 50% in instances or delves.
+- Added durability-based chat colors and large raid-warning text and sound.
+- Added warning controls through slash commands and the AddOns options panel.
+- Added CurseForge packaging and release automation.
