@@ -82,3 +82,14 @@ end
 function DDT.FormatColoredDurability(percentLeft)
     return string.format("|c%s%.1f%%|r", DDT.GetDurabilityColor(percentLeft), percentLeft)
 end
+
+function DDT.PrintCurrentDurability(percentLeft)
+    percentLeft = percentLeft or DDT.GetEquippedDurabilityPercent()
+
+    if not percentLeft then
+        DDT.Print("No equipped items with durability found.")
+        return
+    end
+
+    DDT.Print("Current durability: " .. DDT.FormatColoredDurability(percentLeft) .. ".")
+end

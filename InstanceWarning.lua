@@ -64,6 +64,7 @@ function DDT.WarnIfDurabilityIsLow()
     end
 
     local message = string.format("LOW DURABILITY: %.1f%%", percentLeft)
+    DDT.PrintCurrentDurability(percentLeft)
     warningSequence = warningSequence + 1
     local sequence = warningSequence
 

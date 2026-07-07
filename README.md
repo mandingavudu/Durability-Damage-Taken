@@ -7,7 +7,7 @@ A World of Warcraft: Midnight addon that reports non-combat durability loss and 
 ### Behavior
 
 - Prints durability lost and remaining after every non-combat reduction, including deaths and Spirit Healer resurrections.
-- Shows large red text and plays the raid-warning sound when entering an instance or delve below 80% durability.
+- Shows current durability in chat, large red text, and plays the raid-warning sound when entering an instance or delve below 80% durability.
 - Optionally triggers the same warning when using a current-season dungeon portal.
 - Repeats that warning after a death or other non-combat reduction inside an instance or delve below 50% durability.
 
@@ -36,7 +36,7 @@ Addon para World of Warcraft: Midnight que informa perdas de durabilidade fora d
 ### Comportamento
 
 - Exibe no chat a durabilidade perdida e restante após cada redução fora de combate, incluindo mortes e ressurreições pelo Anjo da Cura.
-- Exibe um texto vermelho grande e toca o som de aviso de raide ao entrar em uma instância ou imersão com menos de 80% de durabilidade.
+- Exibe a durabilidade atual no chat, um texto vermelho grande e toca o som de aviso de raide ao entrar em uma instância ou imersão com menos de 80% de durabilidade.
 - Opcionalmente, ativa o mesmo aviso ao usar um portal de masmorra da temporada atual.
 - Repete o aviso após uma morte ou outra redução fora de combate em uma instância ou imersão com menos de 50% de durabilidade.
 

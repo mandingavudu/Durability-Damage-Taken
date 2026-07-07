@@ -1,14 +1,7 @@
 local _, DDT = ...
 
 local function PrintCurrentDurability()
-    local percentLeft = DDT.GetEquippedDurabilityPercent()
-
-    if not percentLeft then
-        DDT.Print("No equipped items with durability found.")
-        return
-    end
-
-    DDT.Print("Current durability: " .. DDT.FormatColoredDurability(percentLeft) .. ".")
+    DDT.PrintCurrentDurability()
 end
 
 local function SetMajorWarning(value)
