@@ -8,7 +8,7 @@ local DEATH_CHECK_TIMEOUT_SECONDS = 15
 
 local function PrintDurabilityLoss(percentLost, percentLeft)
     local message = string.format(
-        "You lost |cffffffff%.1f%%|r durability. Durability left: %s.",
+        DDT.L.DURABILITY_LOSS,
         percentLost,
         DDT.FormatColoredDurability(percentLeft)
     )

@@ -87,9 +87,9 @@ function DDT.PrintCurrentDurability(percentLeft)
     percentLeft = percentLeft or DDT.GetEquippedDurabilityPercent()
 
     if not percentLeft then
-        DDT.Print("No equipped items with durability found.")
+        DDT.Print(DDT.L.NO_DURABILITY)
         return
     end
 
-    DDT.Print("Current durability: " .. DDT.FormatColoredDurability(percentLeft) .. ".")
+    DDT.Print(string.format(DDT.L.CURRENT_DURABILITY, DDT.FormatColoredDurability(percentLeft)))
 end

@@ -1,3 +1,7 @@
+# 1.3.0
+
+- Added automatic Brazilian Portuguese localization for `ptBR` clients, with English fallback for other locales.
+
 # 1.2.1
 
 - Updated the 1.0.0 changelog to document its included features.

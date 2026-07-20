@@ -7,19 +7,19 @@ end
 local function SetMajorWarning(value)
     local enabled = value == "on"
     DDT.SetMajorWarningEnabled(enabled)
-    DDT.Print("Major warning " .. (enabled and "enabled." or "disabled."))
+    DDT.Print(string.format(DDT.L.MAJOR_WARNING_CHANGED, enabled and DDT.L.ENABLED or DDT.L.DISABLED))
 end
 
 local function SetFollowupMajorWarning(value)
     local enabled = value == "on"
     DDT.SetFollowupMajorWarningEnabled(enabled)
-    DDT.Print("Follow-up major warnings " .. (enabled and "enabled." or "disabled."))
+    DDT.Print(string.format(DDT.L.FOLLOWUP_WARNING_CHANGED, enabled and DDT.L.ENABLED_PLURAL or DDT.L.DISABLED_PLURAL))
 end
 
 local function SetPortalMajorWarning(value)
     local enabled = value == "on"
     DDT.SetPortalMajorWarningEnabled(enabled)
-    DDT.Print("Seasonal dungeon portal warnings " .. (enabled and "enabled." or "disabled."))
+    DDT.Print(string.format(DDT.L.PORTAL_WARNING_CHANGED, enabled and DDT.L.ENABLED_PLURAL or DDT.L.DISABLED_PLURAL))
 end
 
 local function HandleSlashCommand(message)
@@ -41,14 +41,17 @@ local function HandleSlashCommand(message)
     end
 
     if command == "warning" then
-        local portalStatus = DDT.IsPortalMajorWarningEnabled() and "enabled." or "disabled."
+        local enabled = DDT.L.ENABLED
+        local disabled = DDT.L.DISABLED
+        local enabledPlural = DDT.L.ENABLED_PLURAL
+        local disabledPlural = DDT.L.DISABLED_PLURAL
 
-        DDT.Print("Major warning is " .. (DDT.IsMajorWarningEnabled() and "enabled." or "disabled."))
-        DDT.Print("Follow-up warnings are " .. (DDT.IsFollowupMajorWarningEnabled() and "enabled." or "disabled."))
-        DDT.Print("Seasonal dungeon portal warnings are " .. portalStatus)
-        DDT.Print("Use /ddt warning on or /ddt warning off.")
-        DDT.Print("Use /ddt warning followup on or /ddt warning followup off.")
-        DDT.Print("Use /ddt warning portal on or /ddt warning portal off.")
+        DDT.Print(string.format(DDT.L.MAJOR_WARNING_STATUS, DDT.IsMajorWarningEnabled() and enabled or disabled))
+        DDT.Print(string.format(DDT.L.FOLLOWUP_WARNING_STATUS, DDT.IsFollowupMajorWarningEnabled() and enabledPlural or disabledPlural))
+        DDT.Print(string.format(DDT.L.PORTAL_WARNING_STATUS, DDT.IsPortalMajorWarningEnabled() and enabledPlural or disabledPlural))
+        DDT.Print(DDT.L.HELP_WARNING)
+        DDT.Print(DDT.L.HELP_FOLLOWUP)
+        DDT.Print(DDT.L.HELP_PORTAL)
         return
     end
 

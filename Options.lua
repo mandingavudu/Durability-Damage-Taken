@@ -1,4 +1,4 @@
-local addonName = ...
+local addonName, DDT = ...
 
 local settings = _G.DurabilityDamageTakenDB
 local category = Settings.RegisterVerticalLayoutCategory("Durability Damage Taken")
@@ -9,13 +9,13 @@ local majorWarningSetting = Settings.RegisterAddOnSetting(
     "majorWarningEnabled",
     settings,
     Settings.VarType.Boolean,
-    "Enable major warning",
+    DDT.L.OPTIONS_MAJOR,
     Settings.Default.True
 )
 local majorWarningInitializer = Settings.CreateCheckbox(
     category,
     majorWarningSetting,
-    "Show large text and play a sound when entering an instance or delve below 80% durability."
+    DDT.L.OPTIONS_MAJOR_TOOLTIP
 )
 
 local portalWarningSetting = Settings.RegisterAddOnSetting(
@@ -24,13 +24,13 @@ local portalWarningSetting = Settings.RegisterAddOnSetting(
     "portalMajorWarningEnabled",
     settings,
     Settings.VarType.Boolean,
-    "Warn when using a seasonal dungeon portal",
+    DDT.L.OPTIONS_PORTAL,
     Settings.Default.True
 )
 local portalWarningInitializer = Settings.CreateCheckbox(
     category,
     portalWarningSetting,
-    "Also warn when using a current-season dungeon portal below 80% durability."
+    DDT.L.OPTIONS_PORTAL_TOOLTIP
 )
 portalWarningInitializer:Indent()
 portalWarningInitializer:SetParentInitializer(majorWarningInitializer, function()
@@ -43,13 +43,13 @@ local followupWarningSetting = Settings.RegisterAddOnSetting(
     "followupMajorWarningEnabled",
     settings,
     Settings.VarType.Boolean,
-    "Warn after durability loss",
+    DDT.L.OPTIONS_FOLLOWUP,
     Settings.Default.True
 )
 local followupWarningInitializer = Settings.CreateCheckbox(
     category,
     followupWarningSetting,
-    "Also warn after durability loss below 50% inside an instance or delve."
+    DDT.L.OPTIONS_FOLLOWUP_TOOLTIP
 )
 followupWarningInitializer:Indent()
 followupWarningInitializer:SetParentInitializer(majorWarningInitializer, function()
