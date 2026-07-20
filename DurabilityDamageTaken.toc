@@ -1,7 +1,16 @@
 ## Interface: 120005
 ## Title: Durability Damage Taken
 ## Notes: A World of Warcraft: Midnight addon that reports non-combat durability loss and warns when equipment needs repair.
+## Notes-deDE: Meldet Haltbarkeitsverluste außerhalb des Kampfes und warnt, wenn Ausrüstung repariert werden muss.
+## Notes-esES: Informa de pérdidas de durabilidad fuera de combate y avisa cuando el equipo necesita reparación.
+## Notes-esMX: Informa pérdidas de durabilidad fuera de combate y advierte cuando el equipo necesita reparación.
+## Notes-frFR: Signale les pertes de durabilité hors combat et avertit lorsque l’équipement doit être réparé.
+## Notes-itIT: Segnala la perdita di integrità fuori dal combattimento e avvisa quando l'equipaggiamento deve essere riparato.
+## Notes-koKR: 비전투 중 내구도 손실을 알리고 장비 수리가 필요할 때 경고합니다.
 ## Notes-ptBR: Um addon que informa perdas de durabilidade fora de combate e avisa quando o equipamento precisa de reparos.
+## Notes-ruRU: Сообщает о потере прочности вне боя и предупреждает о необходимости ремонта.
+## Notes-zhCN: 报告非战斗耐久度损失，并在装备需要修理时发出警告。
+## Notes-zhTW: 回報非戰鬥耐久度損失，並在裝備需要修理時發出警告。
 ## Author: Diogo
 ## Version: @project-version
 ## X-License: MIT

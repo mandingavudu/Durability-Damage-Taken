@@ -1,3 +1,7 @@
+# 1.4.0
+
+- Added localization for every supported World of Warcraft client language.
+
 # 1.3.1
 
 - Updated the supported World of Warcraft interface version to `120005`.
