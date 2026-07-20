@@ -1,3 +1,7 @@
+# 1.3.1
+
+- Updated the supported World of Warcraft interface version to `120005`.
+
 # 1.3.0
 
 - Added automatic Brazilian Portuguese localization for `ptBR` clients, with English fallback for other locales.
