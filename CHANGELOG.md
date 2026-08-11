@@ -1,3 +1,8 @@
+# 1.5.0
+
+- Updated compatibility for World of Warcraft 12.1 (`120100`).
+- Updated dungeon portal warnings for the Midnight Season 2 rotation.
+
 # 1.4.0
 
 - Added localization for every supported World of Warcraft client language.

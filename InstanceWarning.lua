@@ -4,14 +4,14 @@ local lastTrackedLocation
 local warningSequence = 0
 
 local SEASONAL_DUNGEON_PORTAL_SPELLS = {
-    [159898] = true,  -- Skyreach
-    [393273] = true,  -- Algeth'ar Academy
-    [1254400] = true, -- Windrunner Spire
-    [1254551] = true, -- Seat of the Triumvirate
-    [1254555] = true, -- Pit of Saron
-    [1254559] = true, -- Maisara Caverns
-    [1254563] = true, -- Nexus-Point Xenas
-    [1254572] = true, -- Magisters' Terrace
+    [393256] = true,  -- Ruby Life Pools
+    [1286801] = true, -- The Blinding Vale
+    [1286804] = true, -- Voidscar Arena
+    [1286807] = true, -- Den of Nalorakk
+    [1286809] = true, -- Murder Row
+    [1286812] = true, -- Altar of Fangs
+    [1286828] = true, -- Temple of Sethraliss
+    [1286831] = true, -- King's Rest
 }
 
 local warningFrame = CreateFrame("Frame", nil, UIParent)
