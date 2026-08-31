@@ -11,6 +11,7 @@ The addon automatically detects the client locale. It supports English (`enUS`, 
 - Prints durability lost and remaining after every non-combat reduction, including deaths and Spirit Healer resurrections.
 - Shows current durability in chat, large red text, and plays the raid-warning sound when entering an instance or delve below 80% durability.
 - Optionally triggers the same warning when using a Midnight Season 2 dungeon portal.
+- Optionally triggers the same warning when receiving a summon.
 - Repeats that warning after a death or other non-combat reduction inside an instance or delve below 50% durability.
 
 ### Durability colors
@@ -28,6 +29,8 @@ The addon automatically detects the client locale. It supports English (`enUS`, 
 - `/ddt warning followup off`: keep only instance/delve entry warnings
 - `/ddt warning portal on`: enable warnings when using seasonal dungeon portals (default)
 - `/ddt warning portal off`: disable seasonal dungeon portal warnings
+- `/ddt warning summon on`: enable warnings when receiving a summon (default)
+- `/ddt warning summon off`: disable summon warnings
 
 The same warning controls are available under Options → AddOns → Durability Damage Taken.
 
@@ -42,6 +45,7 @@ O addon detecta automaticamente o idioma do cliente e oferece suporte a todos os
 - Exibe no chat a durabilidade perdida e restante após cada redução fora de combate, incluindo mortes e ressurreições pelo Anjo da Cura.
 - Exibe a durabilidade atual no chat, um texto vermelho grande e toca o som de aviso de raide ao entrar em uma instância ou imersão com menos de 80% de durabilidade.
 - Opcionalmente, ativa o mesmo aviso ao usar um portal de masmorra da 2ª temporada de Midnight.
+- Opcionalmente, ativa o mesmo aviso ao receber uma convocação.
 - Repete o aviso após uma morte ou outra redução fora de combate em uma instância ou imersão com menos de 50% de durabilidade.
 
 ### Cores de durabilidade
@@ -59,5 +63,7 @@ O addon detecta automaticamente o idioma do cliente e oferece suporte a todos os
 - `/ddt warning followup off`: mantém apenas os avisos ao entrar em instâncias ou imersões
 - `/ddt warning portal on`: ativa avisos ao usar portais de masmorras da temporada (padrão)
 - `/ddt warning portal off`: desativa avisos de portais de masmorras da temporada
+- `/ddt warning summon on`: ativa avisos ao receber uma convocação (padrão)
+- `/ddt warning summon off`: desativa avisos de convocação
 
 Os mesmos controles estão disponíveis em Opções → AddOns → Durability Damage Taken.

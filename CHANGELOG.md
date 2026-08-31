@@ -1,3 +1,7 @@
+# 1.6.0
+
+- Added optional, default-enabled major warnings when receiving a summon, configurable through chat commands and the AddOns options panel.
+
 # 1.5.0
 
 - Updated compatibility for World of Warcraft 12.1 (`120100`).

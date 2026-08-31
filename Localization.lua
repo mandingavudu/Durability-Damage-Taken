@@ -10,14 +10,18 @@ local locales = {
         OPTIONS_MAJOR_TOOLTIP = "Show large text and play a sound when entering an instance or delve below 80% durability.",
         OPTIONS_PORTAL = "Warn when using a seasonal dungeon portal",
         OPTIONS_PORTAL_TOOLTIP = "Also warn when using a current-season dungeon portal below 80% durability.",
+        OPTIONS_SUMMON = "Warn when receiving a summon",
+        OPTIONS_SUMMON_TOOLTIP = "Also warn when receiving a summon below 80% durability.",
         OPTIONS_FOLLOWUP = "Warn after durability loss",
         OPTIONS_FOLLOWUP_TOOLTIP = "Also warn after durability loss below 50% inside an instance or delve.",
         MAJOR_WARNING_CHANGED = "Major warning %s.",
         FOLLOWUP_WARNING_CHANGED = "Follow-up major warnings %s.",
         PORTAL_WARNING_CHANGED = "Seasonal dungeon portal warnings %s.",
+        SUMMON_WARNING_CHANGED = "Summon warnings %s.",
         MAJOR_WARNING_STATUS = "Major warning is %s.",
         FOLLOWUP_WARNING_STATUS = "Follow-up warnings are %s.",
         PORTAL_WARNING_STATUS = "Seasonal dungeon portal warnings are %s.",
+        SUMMON_WARNING_STATUS = "Summon warnings are %s.",
         ENABLED = "enabled",
         DISABLED = "disabled",
         ENABLED_PLURAL = "enabled",
@@ -25,6 +29,7 @@ local locales = {
         HELP_WARNING = "Use /ddt warning on or /ddt warning off.",
         HELP_FOLLOWUP = "Use /ddt warning followup on or /ddt warning followup off.",
         HELP_PORTAL = "Use /ddt warning portal on or /ddt warning portal off.",
+        HELP_SUMMON = "Use /ddt warning summon on or /ddt warning summon off.",
     },
     deDE = {
         NO_DURABILITY = "Keine ausgerüsteten Gegenstände mit Haltbarkeit gefunden.",
@@ -150,14 +155,18 @@ local locales = {
         OPTIONS_MAJOR_TOOLTIP = "Exibe um texto grande e toca um som ao entrar em uma instância ou imersão com menos de 80% de durabilidade.",
         OPTIONS_PORTAL = "Avisar ao usar um portal de masmorra da temporada",
         OPTIONS_PORTAL_TOOLTIP = "Também avisa ao usar um portal de masmorra da temporada atual com menos de 80% de durabilidade.",
+        OPTIONS_SUMMON = "Avisar ao receber uma convocação",
+        OPTIONS_SUMMON_TOOLTIP = "Também avisa ao receber uma convocação com menos de 80% de durabilidade.",
         OPTIONS_FOLLOWUP = "Avisar após perda de durabilidade",
         OPTIONS_FOLLOWUP_TOOLTIP = "Também avisa após uma perda de durabilidade abaixo de 50% dentro de uma instância ou imersão.",
         MAJOR_WARNING_CHANGED = "Aviso principal %s.",
         FOLLOWUP_WARNING_CHANGED = "Avisos principais posteriores %s.",
         PORTAL_WARNING_CHANGED = "Avisos de portal de masmorra da temporada %s.",
+        SUMMON_WARNING_CHANGED = "Avisos de convocação %s.",
         MAJOR_WARNING_STATUS = "O aviso principal está %s.",
         FOLLOWUP_WARNING_STATUS = "Os avisos posteriores estão %s.",
         PORTAL_WARNING_STATUS = "Os avisos de portal de masmorra da temporada estão %s.",
+        SUMMON_WARNING_STATUS = "Os avisos de convocação estão %s.",
         ENABLED = "ativado",
         DISABLED = "desativado",
         ENABLED_PLURAL = "ativados",
@@ -165,6 +174,7 @@ local locales = {
         HELP_WARNING = "Use /ddt warning on ou /ddt warning off.",
         HELP_FOLLOWUP = "Use /ddt warning followup on ou /ddt warning followup off.",
         HELP_PORTAL = "Use /ddt warning portal on ou /ddt warning portal off.",
+        HELP_SUMMON = "Use /ddt warning summon on ou /ddt warning summon off.",
     },
     ruRU = {
         NO_DURABILITY = "Не найдено экипированных предметов с прочностью.",
@@ -262,4 +272,9 @@ local locales = {
 
 locales.enGB = locales.enUS
 
-DDT.L = locales[GetLocale()] or locales.enUS
+local selectedLocale = locales[GetLocale()] or locales.enUS
+if selectedLocale ~= locales.enUS then
+    setmetatable(selectedLocale, { __index = locales.enUS })
+end
+
+DDT.L = selectedLocale

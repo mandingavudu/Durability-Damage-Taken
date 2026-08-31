@@ -37,6 +37,25 @@ portalWarningInitializer:SetParentInitializer(majorWarningInitializer, function(
     return settings.majorWarningEnabled
 end)
 
+local summonWarningSetting = Settings.RegisterAddOnSetting(
+    category,
+    addonName .. "_SUMMON_MAJOR_WARNING",
+    "summonMajorWarningEnabled",
+    settings,
+    Settings.VarType.Boolean,
+    DDT.L.OPTIONS_SUMMON,
+    Settings.Default.True
+)
+local summonWarningInitializer = Settings.CreateCheckbox(
+    category,
+    summonWarningSetting,
+    DDT.L.OPTIONS_SUMMON_TOOLTIP
+)
+summonWarningInitializer:Indent()
+summonWarningInitializer:SetParentInitializer(majorWarningInitializer, function()
+    return settings.majorWarningEnabled
+end)
+
 local followupWarningSetting = Settings.RegisterAddOnSetting(
     category,
     addonName .. "_FOLLOWUP_MAJOR_WARNING",

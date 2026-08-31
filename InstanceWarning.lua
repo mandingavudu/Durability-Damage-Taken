@@ -112,8 +112,16 @@ frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("PLAYER_MAP_CHANGED")
 frame:RegisterEvent("WALK_IN_DATA_UPDATE")
 frame:RegisterEvent("UNIT_SPELLCAST_START")
+frame:RegisterEvent("CONFIRM_SUMMON")
 
 frame:SetScript("OnEvent", function(_, event, ...)
+    if event == "CONFIRM_SUMMON" then
+        if DDT.IsSummonMajorWarningEnabled() then
+            DDT.WarnIfDurabilityIsLow()
+        end
+        return
+    end
+
     if event == "UNIT_SPELLCAST_START" then
         local unit, _, spellID = ...
 

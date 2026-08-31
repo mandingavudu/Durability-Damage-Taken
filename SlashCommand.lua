@@ -22,6 +22,12 @@ local function SetPortalMajorWarning(value)
     DDT.Print(string.format(DDT.L.PORTAL_WARNING_CHANGED, enabled and DDT.L.ENABLED_PLURAL or DDT.L.DISABLED_PLURAL))
 end
 
+local function SetSummonMajorWarning(value)
+    local enabled = value == "on"
+    DDT.SetSummonMajorWarningEnabled(enabled)
+    DDT.Print(string.format(DDT.L.SUMMON_WARNING_CHANGED, enabled and DDT.L.ENABLED_PLURAL or DDT.L.DISABLED_PLURAL))
+end
+
 local function HandleSlashCommand(message)
     local command, option, value = message:lower():match("^(%S*)%s*(%S*)%s*(%S*)$")
 
@@ -32,6 +38,11 @@ local function HandleSlashCommand(message)
 
     if command == "warning" and option == "portal" and (value == "on" or value == "off") then
         SetPortalMajorWarning(value)
+        return
+    end
+
+    if command == "warning" and option == "summon" and (value == "on" or value == "off") then
+        SetSummonMajorWarning(value)
         return
     end
 
@@ -49,9 +60,11 @@ local function HandleSlashCommand(message)
         DDT.Print(string.format(DDT.L.MAJOR_WARNING_STATUS, DDT.IsMajorWarningEnabled() and enabled or disabled))
         DDT.Print(string.format(DDT.L.FOLLOWUP_WARNING_STATUS, DDT.IsFollowupMajorWarningEnabled() and enabledPlural or disabledPlural))
         DDT.Print(string.format(DDT.L.PORTAL_WARNING_STATUS, DDT.IsPortalMajorWarningEnabled() and enabledPlural or disabledPlural))
+        DDT.Print(string.format(DDT.L.SUMMON_WARNING_STATUS, DDT.IsSummonMajorWarningEnabled() and enabledPlural or disabledPlural))
         DDT.Print(DDT.L.HELP_WARNING)
         DDT.Print(DDT.L.HELP_FOLLOWUP)
         DDT.Print(DDT.L.HELP_PORTAL)
+        DDT.Print(DDT.L.HELP_SUMMON)
         return
     end
 
