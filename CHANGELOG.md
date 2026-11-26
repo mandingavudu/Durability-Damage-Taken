@@ -1,3 +1,7 @@
+# 1.6.1
+
+- Sync the CurseForge project description from the released README after each successful upload. The release workflow also supports manual description-only updates.
+
 # 1.6.0
 
 - Added optional, default-enabled major warnings when receiving a summon, configurable through chat commands and the AddOns options panel.
