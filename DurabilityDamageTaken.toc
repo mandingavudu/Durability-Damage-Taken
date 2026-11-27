@@ -1,6 +1,6 @@
-## Interface: 120100
+## Interface: 120100, 120105
 ## Title: Durability Damage Taken
-## Notes: A World of Warcraft: Midnight addon that reports non-combat durability loss and warns when equipment needs repair.
+## Notes: A World of Warcraft Retail addon that reports non-combat durability loss and warns when equipment needs repair.
 ## Notes-deDE: Meldet Haltbarkeitsverluste außerhalb des Kampfes und warnt, wenn Ausrüstung repariert werden muss.
 ## Notes-esES: Informa de pérdidas de durabilidad fuera de combate y avisa cuando el equipo necesita reparación.
 ## Notes-esMX: Informa pérdidas de durabilidad fuera de combate y advierte cuando el equipo necesita reparación.

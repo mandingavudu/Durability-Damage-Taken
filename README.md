@@ -2,7 +2,7 @@
 
 ## English
 
-A World of Warcraft: Midnight addon that reports non-combat durability loss and warns when equipment needs repair.
+A World of Warcraft Retail addon that reports non-combat durability loss and warns when equipment needs repair.
 
 The addon automatically detects the client locale. It supports English (`enUS`, `enGB`), German (`deDE`), Spanish (`esES`, `esMX`), French (`frFR`), Italian (`itIT`), Brazilian Portuguese (`ptBR`), Russian (`ruRU`), Korean (`koKR`), Simplified Chinese (`zhCN`), and Traditional Chinese (`zhTW`). Unknown locales fall back to English.
 
@@ -36,7 +36,7 @@ The same warning controls are available under Options → AddOns → Durability 
 
 ## Português
 
-Addon para World of Warcraft: Midnight que informa perdas de durabilidade fora de combate e avisa quando o equipamento precisa de reparos.
+Addon para World of Warcraft Retail que informa perdas de durabilidade fora de combate e avisa quando o equipamento precisa de reparos.
 
 O addon detecta automaticamente o idioma do cliente e oferece suporte a todos os idiomas disponíveis no cliente do World of Warcraft. Idiomas desconhecidos usam inglês como alternativa.
 
