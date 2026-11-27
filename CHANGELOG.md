@@ -1,3 +1,7 @@
+# 1.6.3
+
+- Declare support for Retail 12.1.5 (`120105`) and use Retail terminology in the addon list and README.
+
 # 1.6.2
 
 - Update the MIT license copyright notice to 2026 mandingavudu.
